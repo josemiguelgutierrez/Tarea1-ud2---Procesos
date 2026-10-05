@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Simulador de planificación · NexoData
 
 > PSP · Tema 2 · Procesos · 2.º A DAM · **[Tu nombre]**
@@ -54,3 +55,6 @@ java -cp out planificador.Main datos/ejemplo_clase.csv rr 2 --traza
 
 ### Recomendación
 [De 5 a 10 líneas.]
+=======
+# Tarea1-ud2---Procesos
+>>>>>>> d550cf126880dddee207df40e8d7d0d97ecd4dd5
