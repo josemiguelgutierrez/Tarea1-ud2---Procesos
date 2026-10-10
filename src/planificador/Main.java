@@ -3,6 +3,7 @@ package planificador;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * PSP · Tema 2 · Simulador de planificación para NexoData
@@ -47,7 +48,85 @@ public class Main {
         System.out.println("Fichero: " + fichero + " | algoritmo: " + algoritmo
                 + " | quantum: " + quantum + " | traza: " + traza);
 
-        // TODO (tareas 1 a 3): a partir de aquí, lee los procesos del fichero,
+        List<Proceso> procesos = Lector.leer(fichero.toString());
+
+        // Preparar las simulaciones según el algoritmo elegido
+        List<Planificador> simulacionesAComprobar = new ArrayList<>();
+
+        switch (algoritmo) {
+            case "fcfs":
+                simulacionesAComprobar.add(new AlgoritmoFCFS(procesos, traza));
+                break;
+            case "sjf":
+                simulacionesAComprobar.add(new AlgoritmoSJF(procesos, traza));
+                break;
+            case "rr":
+                simulacionesAComprobar.add(new AlgoritmoRoundRobin(procesos, quantum, traza));
+                break;
+            case "todos":
+                simulacionesAComprobar.add(new AlgoritmoFCFS(procesos, traza));
+                simulacionesAComprobar.add(new AlgoritmoSJF(procesos, traza));
+                simulacionesAComprobar.add(new AlgoritmoRoundRobin(procesos, quantum, traza));
+                break;
+        }
+
+        //Se ejecuta la simulación y se imprimen los resultados por la consola
+        for (Planificador planificador : simulacionesAComprobar) {
+            planificador.simular();
+
+            String nombreAlgoritmo = "";
+            if (planificador instanceof AlgoritmoFCFS) nombreAlgoritmo = "FCFS";
+            else if (planificador instanceof AlgoritmoSJF) nombreAlgoritmo = "SJF sin desalojo";
+            else if (planificador instanceof AlgoritmoRoundRobin) nombreAlgoritmo = "Round Robin (q=" + quantum + ")";
+
+            System.out.println("\n=== " + nombreAlgoritmo + " ===");
+
+            // Se imprime el diagrama de Gantt
+            System.out.print("t ");
+            for (int i = 0; i < planificador.getGantt().size(); i++) {
+                System.out.printf("%-2d ", i);
+            }
+            System.out.println();
+
+            System.out.print("CPU ");
+            for (String cpu : planificador.getGantt()) {
+                System.out.printf("%-2s ", cpu);
+            }
+            System.out.println("\n");
+
+            // Se imprime la tabla de Métricas
+            System.out.printf("%-10s %-8s %-8s %-6s %-8s %-8s %-10s%n",
+                    "Proceso", "Llegada", "Ráfaga", "Fin", "Retorno", "Espera", "Respuesta");
+
+            double sumaRetorno = 0;
+            double sumaEspera = 0;
+            double sumaRespuesta = 0;
+            List<Proceso> sims = planificador.getProcesosSimulacion();
+
+            for (Proceso p : sims) {
+                sumaRetorno += p.getRetorno();
+                sumaEspera += p.getEspera();
+                sumaRespuesta += p.getRespuesta();
+                System.out.printf("%-10s %-8d %-8d %-6d %-8d %-8d %-10d%n", p.getNombre(), p.getLlegada(), p.getRafaga(), p.getFin(), p.getRetorno(), p.getEspera(), p.getRespuesta());
+            }
+
+            int totalP = sims.size();
+            System.out.printf("Medias: retorno %.2f | espera %.2f | respuesta %.2f%n",
+                    sumaRetorno / totalP, sumaEspera / totalP, sumaRespuesta / totalP);
+
+            // Cambios de Contexto
+            System.out.println("Cambios de contexto: " + planificador.getCambiosContexto());
+
+            if (traza) {
+                System.out.println("Traza de estados:");
+                for (String evento : planificador.getTrazaEventos()) {
+                    System.out.println(evento);
+                }
+            }
+        }
 
     }
 }
+
+
+
