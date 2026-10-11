@@ -16,7 +16,7 @@ javac -encoding UTF-8 -d out src/planificador/*.java
 java -cp out planificador.Main datos/ejemplo_clase.csv rr 2 --traza
 ```
 
-**Desde IntelliJ IDEA:** Para ejecutarlo desde el entorno, abrimos el proyecto asegurándonos de tener configurada una JDK compatible. Nos vamos a la configuración de ejecución (Run Configurations), en la clase principal indicamos planificador.Main, añadimos los argumentos necesarios (por ejemplo, el archivo CSV, el algoritmo y el quantum si procede) y comprobamos que el working directory apunta correctamente a la raíz del proyecto.
+**Desde IntelliJ IDEA:** Para ejecutarlo desde el entorno, abrimos el proyecto y nos aseguramos de tener configurada una JDK compatible. Luego, nos vamos a arriba a la derecha a la izquierda del play y seleccionamos la opción de Edit Configurations para acceder a la Run Configuration y ahí, en la clase principal indicamos planificador.Main, añadimos los argumentos necesarios como, el archivo CSV, el algoritmo que queremos que use y el quantum si usamo RR, y también por último, comprobamos que el working directory apunta correctamente a la carpeta de nuestro proyecto.
 
 <img width="2540" height="1380" alt="image" src="https://github.com/user-attachments/assets/a34d2272-f563-4b59-b828-00df254edd36" />
 
