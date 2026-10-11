@@ -50,7 +50,7 @@ public class Main {
 
         List<Proceso> procesos = Lector.leer(fichero.toString());
 
-        // Preparar las simulaciones según el algoritmo elegido
+        // Se preparan las simulaciones según el algoritmo elegido
         List<Planificador> simulacionesAComprobar = new ArrayList<>();
 
         switch (algoritmo) {
@@ -61,12 +61,12 @@ public class Main {
                 simulacionesAComprobar.add(new AlgoritmoSJF(procesos, traza));
                 break;
             case "rr":
-                simulacionesAComprobar.add(new AlgoritmoRoundRobin(procesos, quantum, traza));
+                simulacionesAComprobar.add(new AlgoritmoRR(procesos, quantum, traza));
                 break;
             case "todos":
                 simulacionesAComprobar.add(new AlgoritmoFCFS(procesos, traza));
                 simulacionesAComprobar.add(new AlgoritmoSJF(procesos, traza));
-                simulacionesAComprobar.add(new AlgoritmoRoundRobin(procesos, quantum, traza));
+                simulacionesAComprobar.add(new AlgoritmoRR(procesos, quantum, traza));
                 break;
         }
 
@@ -77,7 +77,7 @@ public class Main {
             String nombreAlgoritmo = "";
             if (planificador instanceof AlgoritmoFCFS) nombreAlgoritmo = "FCFS";
             else if (planificador instanceof AlgoritmoSJF) nombreAlgoritmo = "SJF sin desalojo";
-            else if (planificador instanceof AlgoritmoRoundRobin) nombreAlgoritmo = "Round Robin (q=" + quantum + ")";
+            else if (planificador instanceof AlgoritmoRR) nombreAlgoritmo = "Round Robin (q=" + quantum + ")";
 
             System.out.println("\n=== " + nombreAlgoritmo + " ===");
 

@@ -3,8 +3,8 @@ package planificador;
 import java.util.List;
 import java.util.Queue;
 
-public class AlgoritmoRoundRobin extends Planificador {
-    public AlgoritmoRoundRobin(List<Proceso> procesos, int quantum, boolean trazaActiva) {
+public class AlgoritmoRR extends Planificador {
+    public AlgoritmoRR(List<Proceso> procesos, int quantum, boolean trazaActiva) {
         super(procesos, quantum, trazaActiva);
     }
 
