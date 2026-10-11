@@ -5,7 +5,7 @@
 
 ## 1. Qué hace
 
-[Tres o cuatro líneas.]
+Este programa es un simulador de planificación de CPU desarrollado en Java. Su función principal es leer un fichero de datos en formato CSV con diferentes procesos y simular cómo los distintos algoritmos de planificación de sistemas operativos como FCFS, SJF o Round Robin, gestionan el turno de la CPU, calculando los tiempos clave y generando una traza detallada de la ejecución.
 
 ## 2. Cómo compilar y ejecutar
 
@@ -16,13 +16,20 @@ javac -encoding UTF-8 -d out src/planificador/*.java
 java -cp out planificador.Main datos/ejemplo_clase.csv rr 2 --traza
 ```
 
-**Desde IntelliJ IDEA:** [explica los pasos que has seguido: JDK, configuración de ejecución, argumentos y *working directory*.]
+**Desde IntelliJ IDEA:** Para ejecutarlo desde el entorno, abrimos el proyecto asegurándonos de tener configurada una JDK compatible. Nos vamos a la configuración de ejecución (Run Configurations), en la clase principal indicamos planificador.Main, añadimos los argumentos necesarios (por ejemplo, el archivo CSV, el algoritmo y el quantum si procede) y comprobamos que el working directory apunta correctamente a la raíz del proyecto.
 
-![Mi programa en ejecución](capturas/[nombre-de-tu-captura].png)
+<img width="2540" height="1380" alt="image" src="https://github.com/user-attachments/assets/a34d2272-f563-4b59-b828-00df254edd36" />
+
 
 ## 3. Diseño
 
-[Qué clases hay, qué hace cada una y por qué las has organizado así.]
+El proyecto está organizado en varias clases orientadas a objetos para separar responsabilidades de manera limpia:
+
+- Proceso: Tiene toda la información individual de cada tarea como su identificador, el instante de llegada, la ráfaga, los tiempos de espera, el retorno y la respuesta.
+
+- Planificador: Tiene la lógica de control de cada política de planificación como FCFS, SJF y Round Robin, y gestiona las colas de listos y los turnos de la CPU.
+
+- Main: Es la clase principal que se encarga de leer los argumentos por consola, abrir y procesar los ficheros CSV, y lanza el algoritmo correspondiente y  después nos muestra por pantalla los resultados y las métricas finales.
 
 ## 4. Verificación (tarea 4)
 
@@ -58,5 +65,6 @@ En esos momentos, los procesos que habían llegado al principio ya han finalizad
 Para los trabajos nocturnos de NexoData, el algoritmo ideal que recomendaría es el SJF. Como por las noches no hay usuarios conectados esperando en directo, lo que busca la empresa es maximizar la eficiencia y terminar todo cuanto antes, logrando la menor espera media posible.
 
 Pero, cambiaría de opinión si fuese un servidor con usuarios conectados interactuando en tiempo real. Ahí, ya sería eficiente el SJF, entonces recomendaría Round Robin con un quantum pequeño, ya que lo importante para los usuarios es la agilidad, que el sistema responda rápido y que nadie se quede esperando mucho tiempo.
+
 =======
 # Tarea1-ud2---Procesos
