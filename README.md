@@ -34,7 +34,9 @@ El proyecto está organizado en varias clases orientadas a objetos para separar 
 ## 4. Verificación (tarea 4)
 
 ### 4.1 verificacion.csv resuelto a mano
-[FCFS y Round Robin q=2: diagrama de Gantt, cola de listos en cada decisión (RR), métricas y cambios de contexto. Puedes usar tablas Markdown o una foto de tu hoja.]
+<img width="2104" height="3264" alt="Verificación resuelta a mano - Parte 1" src="https://github.com/user-attachments/assets/e4100995-3b97-40a8-b44c-8a88b7a84f8d" />
+
+<img width="2328" height="3264" alt="Verificación resuelta a mano - Parte 2" src="https://github.com/user-attachments/assets/61d8dc96-5f85-44da-aa79-71bd5816e9bc" />
 
 ### 4.2 Comparación con el programa
 He hecho los cálculos a mano en el papel y luego lo he comparado paso a paso con la salida de ejecución del programa en Java, el programa de Java no ha fallado y funciona correctamente, lo que pasa es que yo me equivoqué al principio haciéndolo a mano me equivoqué al hacer el orden exacto de los turnos de cada proceso en el diagrama de Gantt en la parte del final del Round Robin, el error fue que me equivoqué con P1 la última vez que entraba después de cola, y puse antes en la parte final del diagrama P4, antes que P1.
